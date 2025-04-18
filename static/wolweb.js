@@ -131,6 +131,7 @@ function renderData() {
         title: "Device",
         type: "text",
         width: "auto",
+        align: "center",
         validate: { validator: "required", message: "Device name is a required field." }
     });
     gridFields.push({

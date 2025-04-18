@@ -136,7 +136,7 @@ func basicAuth(next http.HandlerFunc) http.HandlerFunc {
 					passwordHash := strings.ToLower(fmt.Sprintf("%x", sha256.Sum256([]byte(password))))
 					expectedUsernameHash := sha256.Sum256([]byte(user.Username))
 					expectedPasswordHash := strings.ToLower(password_good)
-					usernameMatch := (subtle.ConstantTimeCompare(usernameHash[:], expectedUsernameHash[:]) == 1)
+					usernameMatch := subtle.ConstantTimeCompare(usernameHash[:], expectedUsernameHash[:]) == 1
 					if usernameMatch && strings.TrimSpace(expectedPasswordHash) != "" && (passwordHash == expectedPasswordHash) {
 						authOk = true
 					}
